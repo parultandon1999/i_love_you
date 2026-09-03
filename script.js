@@ -80,42 +80,42 @@
   });
 
   /* ---------------------------------------------------------
-     3a. BACKGROUND MUSIC - AGGRESSIVE AUTOPLAY
+     3a. BACKGROUND MUSIC - INSTANT PLAYBACK
      --------------------------------------------------------- */
   function setupBackgroundMusic() {
     var music = document.getElementById('backgroundMusic');
-    
-    // Start muted (browsers allow this), then unmute on interaction
-    music.muted = true;
     music.volume = 0.6;
-    music.play();
     
-    // Unmute on ANY interaction
-    var unmuted = false;
-    function unmuteMusic() {
-      if (!unmuted) {
+    // Preload and prepare music
+    music.load();
+    
+    // Unmute and play IMMEDIATELY on first interaction
+    var hasStarted = false;
+    function playMusicNow(e) {
+      if (!hasStarted) {
+        hasStarted = true;
         music.muted = false;
         music.volume = 0.6;
-        unmuted = true;
-        music.play();
+        
+        // Force play immediately
+        var playPromise = music.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function() {
+            console.log('Music playing');
+          }).catch(function(err) {
+            console.log('Playback error:', err);
+          });
+        }
       }
     }
     
-    // Listen to EVERYTHING
-    document.body.addEventListener('click', unmuteMusic, { once: true });
-    document.body.addEventListener('touchstart', unmuteMusic, { once: true });
-    document.body.addEventListener('touchend', unmuteMusic, { once: true });
-    document.body.addEventListener('keydown', unmuteMusic, { once: true });
+    // Attach to body with capture phase (happens before button click)
+    document.body.addEventListener('click', playMusicNow, { capture: true, once: true });
+    document.body.addEventListener('touchstart', playMusicNow, { capture: true, once: true });
     
-    // Try to unmute after 100ms
-    setTimeout(function() {
-      music.muted = false;
-      music.volume = 0.6;
-      music.play().catch(function() {
-        // If this fails, user must interact first
-        music.muted = true;
-      });
-    }, 100);
+    // Start muted autoplay in background (preloading)
+    music.muted = true;
+    music.play().catch(function() {});
   }
 
   /* ---------------------------------------------------------
