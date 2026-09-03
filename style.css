@@ -2074,9 +2074,10 @@ button:focus-visible, a:focus-visible {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: clamp(30px, 5vh, 60px) 0;
+  padding: clamp(30px, 5vh, 60px) 0 clamp(20px, 3vh, 40px) 0;
+  gap: clamp(15px, 3vh, 25px);
 }
 
 .memories-title {
@@ -2280,7 +2281,8 @@ button:focus-visible, a:focus-visible {
 .heart-button--memories-hor {
   z-index: 200;
   position: relative;
-  margin-bottom: 20px;
+  margin-top: clamp(15px, 3vh, 25px);
+  margin-bottom: 0;
   pointer-events: auto;
   cursor: pointer;
 }
