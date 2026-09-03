@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-hidden="true">
+  <title>Wrapped gift box, pink with polka dots and red ribbon</title>
+  <g transform="rotate(2 80 84)">
+    <rect x="24" y="68" width="112" height="74" rx="6" fill="#f0a6ac"/>
+    <circle cx="46" cy="94" r="4" fill="#fdf8ee" opacity="0.8"/>
+    <circle cx="112" cy="88" r="4" fill="#fdf8ee" opacity="0.8"/>
+    <circle cx="96" cy="120" r="4" fill="#fdf8ee" opacity="0.8"/>
+    <circle cx="40" cy="124" r="4" fill="#fdf8ee" opacity="0.8"/>
+    <rect x="20" y="50" width="120" height="24" rx="5" fill="#c8393a"/>
+    <rect x="68" y="50" width="20" height="92" fill="#c8393a"/>
+    <rect x="20" y="58" width="120" height="9" fill="#a12d2e"/>
+    <path d="M78 50 C 54 26, 30 30, 38 50 C 30 38, 14 44, 30 58 C 44 56, 64 54, 78 50 Z" fill="#c8393a"/>
+    <path d="M78 50 C 102 26, 126 30, 118 50 C 126 38, 142 44, 126 58 C 112 56, 92 54, 78 50 Z" fill="#c8393a"/>
+    <circle cx="78" cy="50" r="8" fill="#7d2323"/>
+  </g>
+</svg>

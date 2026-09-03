@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A Little Something For You</title>
+<meta name="description" content="A personalized handmade birthday card, made just for you.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- Reusable gingham card frame. Scene content swaps inside .card-inner -->
+  <div class="card-frame">
+    <div class="card-inner" id="cardInner">
+
+      <!-- progress dots showing where we are in the story -->
+      <div class="progress-dots" id="progressDots" aria-hidden="true">
+        <span class="dot" data-step="0"></span>
+        <span class="dot" data-step="1"></span>
+        <span class="dot" data-step="2"></span>
+        <span class="dot" data-step="3"></span>
+      </div>
+
+      <!-- SCENE 1: INITIAL BIRTHDAY QUESTION -->
+      <section class="scene scene--intro" id="scene-intro" data-scene="intro" aria-label="Birthday card introduction">
+        <div class="intro-photo-container">
+          <svg class="curved-text-svg" viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
+            <path id="curve" d="M 30,140 Q 250,30 470,140" fill="transparent"/>
+            <text class="curved-svg-text" fill="#c8393a" font-size="38" font-weight="700" font-family="Caveat, cursive">
+              <textPath href="#curve" startOffset="50%" text-anchor="middle">
+                I have made something for you
+              </textPath>
+            </text>
+          </svg>
+          
+          <figure class="photo-frame photo-frame--round">
+            <img class="photo" data-photo-key="intro" src="assets/first%20image.png" alt="A cheerful photo of the birthday child">
+            <span class="washi-tape washi-tape--tl" aria-hidden="true"></span>
+          </figure>
+        </div>
+
+        <p class="prompt-text">Do you wanna see it?</p>
+
+        <div class="button-row">
+          <button type="button" class="primary-button" id="btnYesIntro">YES</button>
+          <button type="button" class="secondary-button" id="btnNoIntro">NO</button>
+        </div>
+      </section>
+
+      <!-- SCENE 2: NO / TRY AGAIN -->
+      <section class="scene" id="scene-no" data-scene="no" aria-label="Playful rejection">
+        <figure class="photo-frame photo-frame--round photo-frame--pout">
+          <img class="photo" data-photo-key="no" src="assets/child2.jpg" alt="A pouting photo of the birthday child">
+          <span class="washi-tape washi-tape--tr" aria-hidden="true"></span>
+        </figure>
+
+        <h2 class="heading heading--shout">HOW DARE YOU?</h2>
+        <p class="prompt-text prompt-text--tight">There is no "no" on a birthday.</p>
+
+        <button type="button" class="retry-button" id="btnTryAgain">TRY AGAIN</button>
+      </section>
+
+      <!-- SCENE 3: EXCITEMENT QUESTION -->
+      <section class="scene" id="scene-excitement" data-scene="excitement" aria-label="Excitement check">
+        <p class="eyebrow-line">okay, good choice</p>
+        <figure class="photo-frame photo-frame--round">
+          <img class="photo" data-photo-key="excitement" src="assets/child3.jpg" alt="An excited photo of the birthday child">
+          <span class="washi-tape washi-tape--tl" aria-hidden="true"></span>
+        </figure>
+
+        <p class="prompt-text">Are you really excited?</p>
+
+        <div class="button-row">
+          <button type="button" class="primary-button" id="btnYesExcite1">YES</button>
+          <button type="button" class="primary-button" id="btnYesExcite2">YES</button>
+        </div>
+      </section>
+
+      <!-- SCENE 4 / 7: GIFTS HUB -->
+      <section class="scene" id="scene-gifts" data-scene="gifts" aria-label="Choose a gift">
+        <h2 class="heading heading--script heading--tight">Each gift has<br>something for you&hellip;</h2>
+
+        <div class="gift-row" role="group" aria-label="Three wrapped gifts">
+          <button type="button" class="gift-button" data-gift="1" aria-label="Open the first gift">
+            <img class="gift-illustration" src="assets/gift1.svg" alt="" aria-hidden="true">
+            <span class="gift-shine" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="gift-button" data-gift="2" aria-label="Open the second gift">
+            <img class="gift-illustration" src="assets/gift2.svg" alt="" aria-hidden="true">
+            <span class="gift-shine" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="gift-button" data-gift="3" aria-label="Open the third gift">
+            <img class="gift-illustration" src="assets/gift3.svg" alt="" aria-hidden="true">
+            <span class="gift-shine" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <p class="click-hint">CLICK ON THE GIFTS</p>
+
+        <img class="scene-decoration scene-decoration--gifts" src="assets/forth%20image.png.png" alt="">
+
+        <button type="button" class="arrow-button arrow-button--hub" id="btnGiftsArrow" aria-label="Skip ahead to the end of the card">
+          <span class="arrow-glyph" aria-hidden="true">&rsaquo;</span>
+        </button>
+      </section>
+
+      <!-- SCENE 5: BIRTHDAY -->
+      <section class="scene scene-birthday-enhanced" id="scene-birthday" data-scene="birthday" aria-label="Happy birthday">
+        <div class="confetti-field" aria-hidden="true">
+          <span class="confetti c1"></span><span class="confetti c2"></span>
+          <span class="confetti c3"></span><span class="confetti c4"></span>
+          <span class="confetti c5"></span><span class="confetti c6"></span>
+          <span class="confetti c7"></span><span class="confetti c8"></span>
+          <span class="confetti c9"></span><span class="confetti c10"></span>
+        </div>
+
+        <!-- Split layout container -->
+        <div class="birthday-split-layout">
+          <!-- Left side: Text content -->
+          <div class="birthday-content-left">
+            <h2 class="heading heading--birthday heading--birthday-animated">
+              <span class="heading--birthday-caps">HAPPY</span>
+              <span class="heading--birthday-script">Birthday</span>
+            </h2>
+
+            <p class="birthday-note">Wishing you a little bit of happiness, love, laughter and joy for today and always.</p>
+
+            <!-- Ribbon banner with nickname -->
+            <div class="ribbon-banner">
+              <span class="ribbon-text">Cheekuuu</span>
+            </div>
+
+            <p class="prompt-text prompt-text--tight prompt-text--rainbow">One year older, ten years cooler.</p>
+
+            <!-- Heart-shaped Click Me button -->
+            <button type="button" class="heart-button" id="btnHeartToWish">
+              <span class="heart-shape">❤</span>
+              <span class="heart-text">Click Me</span>
+            </button>
+          </div>
+
+          <!-- Right side: Photo -->
+          <div class="birthday-photo-right">
+            <figure class="photo-frame photo-frame--rect photo-frame--birthday photo-frame--birthday-large">
+              <img class="photo" data-photo-key="birthday" src="assets/birthday.jpg" alt="A birthday photo of the child, smiling in front of a cake">
+              <span class="washi-tape washi-tape--tr" aria-hidden="true"></span>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 6: MAKE A WISH -->
+      <section class="scene scene-wish-enhanced" id="scene-wish" data-scene="wish" aria-label="Make a wish">
+        <!-- Split layout container -->
+        <div class="wish-split-layout">
+          <!-- Left side: Text and button -->
+          <div class="wish-content-left">
+            <h2 class="heading heading--script">MAKE A WISH</h2>
+            
+            <p class="wish-message">Close your eyes and make a special wish for the year ahead!</p>
+
+            <!-- Heart-shaped Click Me button -->
+            <button type="button" class="heart-button" id="btnBackToGifts1">
+              <span class="heart-shape">❤</span>
+              <span class="heart-text">Click Me</span>
+            </button>
+          </div>
+
+          <!-- Right side: Cake -->
+          <div class="wish-cake-right">
+            <div class="cake-stage cake-stage--large">
+              <img class="cake-illustration" src="assets/cake.svg" alt="A birthday cake illustration with five lit candles">
+              <span class="sparkle sparkle--a" aria-hidden="true"></span>
+              <span class="sparkle sparkle--b" aria-hidden="true"></span>
+              <span class="sparkle sparkle--c" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sixth image decoration -->
+        <figure class="wish-decoration-photo">
+          <img src="assets/sixth%20image.png" alt="Special birthday moment">
+        </figure>
+      </section>
+
+      <!-- SCENE 8: MEMORIES -->
+      <section class="scene scene-memories-horizontal" id="scene-memories" data-scene="memories" aria-label="Memories scrapbook">
+        <div class="memories-horizontal-container">
+          <!-- Memories heading -->
+          <h2 class="memories-title">Memories</h2>
+          
+          <!-- Single horizontal clothesline with all photos -->
+          <div class="horizontal-clothesline-wrapper">
+            <div class="clothesline-horizontal"></div>
+            
+            <!-- Left scroll button -->
+            <button type="button" class="scroll-btn scroll-btn--left" id="scrollLeft">
+              <span>◀</span>
+            </button>
+            
+            <!-- Scrollable photos container -->
+            <div class="photos-scroll-container" id="photosContainer">
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.45%20AM(1).jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.45%20AM.jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.46%20AM%20(1).jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.46%20AM.jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.47%20AM%20(1).jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.47%20AM.jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.48%20AM%20(1).jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.48%20AM.jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.49%20AM%20(1).jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.49%20AM.jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.51%20AM%20(1).jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip">
+                <div class="clip"></div>
+                <img src="assets/memories/WhatsApp%20Image%202026-09-02%20at%209.40.51%20AM.jpeg" alt="Memory">
+              </div>
+              <div class="photo-clip photo-clip--video">
+                <div class="clip"></div>
+                <!-- <video controls>
+                  <source src="assets/memories/WhatsApp%20Video%202026-08-29%20at%207.25.05%20PM.mp4" type="video/mp4">
+                </video> -->
+              </div>
+              <div class="photo-clip photo-clip--video">
+                <div class="clip"></div>
+                <video controls>
+                  <source src="assets/memories/WhatsApp%20Video%202026-09-02%20at%209.40.47%20AM%20(1).mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="photo-clip photo-clip--video">
+                <div class="clip"></div>
+                <video controls>
+                  <source src="assets/memories/WhatsApp%20Video%202026-09-02%20at%209.40.48%20AM.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="photo-clip photo-clip--video">
+                <div class="clip"></div>
+                <video controls>
+                  <source src="assets/memories/WhatsApp%20Video%202026-09-02%20at%209.40.50%20AM%20(1).mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="photo-clip photo-clip--video">
+                <div class="clip"></div>
+                <video controls>
+                  <source src="assets/memories/WhatsApp%20Video%202026-09-02%20at%209.40.50%20AM.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+            
+            <!-- Right scroll button -->
+            <button type="button" class="scroll-btn scroll-btn--right" id="scrollRight">
+              <span>▶</span>
+            </button>
+          </div>
+
+          <!-- Decorative elements -->
+          <div class="scrapbook-decor decor-flower">🌸</div>
+          <div class="scrapbook-decor decor-bow">🎀</div>
+          <div class="scrapbook-decor decor-camera">📷</div>
+
+          <!-- Heart button -->
+          <button type="button" class="heart-button heart-button--memories-hor" id="btnBackToGifts2">
+            <span class="heart-shape">❤</span>
+            <span class="heart-text">Click Me</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- SCENE 9: LETTER -->
+      <section class="scene scene-letter-fullscreen" id="scene-letter" data-scene="letter" aria-label="A letter for you">
+        <div class="letter-fullscreen-container">
+          <h2 class="letter-heading">To you, from me</h2>
+
+          <div class="letter-content">
+            <p class="letter-paragraph">Dear bestie,</p>
+            
+            <p class="letter-paragraph">Happy Birthday, Bestie! ❤️</p>
+            
+            <p class="letter-paragraph">I honestly don't know how to put into words how grateful I am to have you in my life. Thank you for being my biggest supporter, my partner in crime, and the person I can always count on. Through all the laughs, random conversations, inside jokes, and even the tough days, you've made life so much better just by being a part of it.</p>
+            
+            <p class="letter-paragraph">I hope this year brings you everything you've been wishing for—happiness, success, peace, good health, and countless reasons to smile. Never forget how amazing, kind, and loved you are. You deserve nothing but the very best.</p>
+            
+            <p class="letter-paragraph">No matter where life takes us, I hope we always stay this close and keep making memories together. Thank you for being the wonderful person you are and for making my life brighter every single day.</p>
+            
+            <p class="letter-paragraph">Have the happiest birthday, and enjoy every moment of your special day. I love you so much! ❤️🎂</p>
+            
+            <!-- Last line with image on left side -->
+            <div class="letter-closing-section">
+              <figure class="letter-end-photo">
+                <img src="assets/seventh image.png" alt="Special memory">
+              </figure>
+              <p class="letter-paragraph letter-closing">Love you ❤️</p>
+            </div>
+          </div>
+
+          <!-- Heart button -->
+          <button type="button" class="heart-button heart-button--letter" id="btnToFinal">
+            <span class="heart-shape">❤</span>
+            <span class="heart-text">Click Me</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- SCENE 10: FINAL MESSAGE -->
+      <section class="scene" id="scene-final" data-scene="final" aria-label="Closing birthday message">
+        <h2 class="heading heading--final">
+          <span>May all the good things</span>
+          <span>you've been waiting for</span>
+          <span>finally find you</span>
+          <span>this year.</span>
+        </h2>
+
+        <figure class="photo-frame photo-frame--rect photo-frame--right photo-frame--small">
+          <img class="photo" data-photo-key="final" src="assets/child3.jpg" alt="A final farewell photo of the child, smiling">
+          <span class="washi-tape washi-tape--bl" aria-hidden="true"></span>
+        </figure>
+
+        <footer class="card-footer">
+          <p class="footer-text">Contact me for more details</p>
+          <a class="contact-badge" href="mailto:hello@example.com">GET IN TOUCH</a>
+          <button type="button" class="replay-link" id="btnReplay">play it again</button>
+        </footer>
+      </section>
+
+    </div><!-- /card-inner -->
+  </div><!-- /card-frame -->
+
+</div><!-- /stage -->
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-hidden="true">
+  <title>Wrapped gift box, red with white ribbon</title>
+  <g transform="rotate(-2 80 84)">
+    <rect x="26" y="70" width="108" height="72" rx="6" fill="#c8393a"/>
+    <rect x="26" y="70" width="108" height="72" rx="6" fill="none" stroke="#7d2323" stroke-width="2" opacity="0.25"/>
+    <rect x="22" y="52" width="116" height="24" rx="5" fill="#a12d2e"/>
+    <rect x="70" y="52" width="20" height="90" fill="#fdf8ee"/>
+    <rect x="22" y="60" width="116" height="10" fill="#fdf8ee"/>
+    <path d="M80 52 C 58 30, 34 34, 42 52 C 34 40, 20 46, 34 60 C 46 58, 66 56, 80 52 Z" fill="#fdf8ee"/>
+    <path d="M80 52 C 102 30, 126 34, 118 52 C 126 40, 140 46, 126 60 C 114 58, 94 56, 80 52 Z" fill="#fdf8ee"/>
+    <circle cx="80" cy="52" r="9" fill="#f0a6ac"/>
+  </g>
+</svg>

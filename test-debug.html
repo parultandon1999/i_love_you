@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body { padding: 50px; background: #fdf8ee; font-family: sans-serif; }
+.test-container {
+  width: 400px;
+  height: 400px;
+  background: white;
+  position: relative;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.test-scene {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.test-scene > * {
+  pointer-events: auto;
+}
+
+.test-button {
+  padding: 15px 40px;
+  background: #c8393a;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
+  cursor: pointer;
+  animation: fadeInUp 0.8s ease-out 0.5s forwards;
+  opacity: 0;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 1000;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.test-button:hover {
+  background: #a12d2e;
+}
+
+.info {
+  margin-top: 20px;
+  padding: 10px;
+  background: #fffacd;
+  border: 1px solid #ccc;
+}
+</style>
+</head>
+<body>
+<h1>Button Click Test</h1>
+<p>Wait 1 second for button to animate in, then try clicking:</p>
+
+<div class="test-container">
+  <div class="test-scene">
+    <h2>Test Scene</h2>
+    <button class="test-button" id="testBtn">CLICK ME</button>
+  </div>
+</div>
+
+<div class="info" id="info">
+  Status: Waiting for click...
+</div>
+
+<script>
+let clickCount = 0;
+document.getElementById('testBtn').addEventListener('click', function() {
+  clickCount++;
+  document.getElementById('info').innerHTML = 
+    'Status: Button clicked ' + clickCount + ' time(s)! ✓<br>' +
+    'Button computed style: ' + window.getComputedStyle(this).pointerEvents + '<br>' +
+    'Button z-index: ' + window.getComputedStyle(this).zIndex;
+});
+
+// Log button state every second
+setInterval(() => {
+  const btn = document.getElementById('testBtn');
+  const style = window.getComputedStyle(btn);
+  console.log('Button state:', {
+    pointerEvents: style.pointerEvents,
+    opacity: style.opacity,
+    zIndex: style.zIndex,
+    display: style.display
+  });
+}, 1000);
+</script>
+</body>
+</html>
