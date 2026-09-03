@@ -2281,7 +2281,7 @@ button:focus-visible, a:focus-visible {
 .heart-button--memories-hor {
   z-index: 200;
   position: relative;
-  margin-top: clamp(15px, 3vh, 25px);
+  margin-top: 5px;
   margin-bottom: 0;
   pointer-events: auto;
   cursor: pointer;
