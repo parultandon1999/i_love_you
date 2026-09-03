@@ -250,6 +250,16 @@ a { color: inherit; text-decoration: none; }
 }
 .heading--final span:nth-child(odd) { transform: rotate(-1deg); }
 .heading--final span:nth-child(even) { transform: rotate(1deg); }
+
+.signature-name {
+  margin-top: 8px;
+  color: var(--gold) !important;
+  font-size: clamp(28px, 7vw, 36px) !important;
+  font-family: var(--font-display);
+  font-style: italic;
+  transform: rotate(-2deg) !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
 .prompt-text { 
   font-size: clamp(22px, 5vw, 26px); 
   color: var(--ink);
@@ -590,7 +600,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ========== FOOTER ========== */
-.card-footer { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 8px; }
+.card-footer { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 6px; }
 .footer-text { font-size: 14px; color: var(--ink-soft); }
 .contact-badge {
   background: var(--ink);
@@ -2281,8 +2291,8 @@ button:focus-visible, a:focus-visible {
 .heart-button--memories-hor {
   z-index: 200;
   position: relative;
-  margin-top: 5px;
-  margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: clamp(15px, 3vh, 20px);
   pointer-events: auto;
   cursor: pointer;
 }
@@ -2501,7 +2511,7 @@ button:focus-visible, a:focus-visible {
 
 .heart-button--letter {
   z-index: 999999 !important;
-  margin: 60px auto 80px auto;
+  margin: 30px auto 40px auto;
   position: relative;
   pointer-events: auto !important;
   cursor: pointer !important;
@@ -2595,3 +2605,107 @@ a.contact-badge {
 *::after {
   pointer-events: none !important;
 }
+
+
+/* ========== FULLSCREEN PHOTO VIEWER ========== */
+.fullscreen-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 999999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.fullscreen-viewer.active {
+  display: flex;
+  opacity: 1;
+}
+
+.fullscreen-content {
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullscreen-content img,
+.fullscreen-content video {
+  max-width: 100%;
+  max-height: 95vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.fullscreen-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1000000;
+  pointer-events: auto;
+}
+
+.fullscreen-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.fullscreen-close:active {
+  transform: scale(0.95) rotate(90deg);
+}
+
+.close-icon {
+  line-height: 1;
+  font-weight: 300;
+}
+
+/* Make photos clickable */
+.photo-clip {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.photo-clip:hover {
+  transform: scale(1.05);
+}
+
+.photo-clip:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 480px) {
+  .fullscreen-close {
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+  }
+  
+  .fullscreen-content img,
+  .fullscreen-content video {
+    max-height: 90vh;
+  }
+}
+

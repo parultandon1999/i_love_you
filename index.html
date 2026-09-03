@@ -14,6 +14,12 @@
 </head>
 <body>
 
+<!-- Background Music -->
+<audio id="backgroundMusic" loop preload="auto" autoplay muted>
+  <source src="assets/music.m4a" type="audio/mp4">
+  <source src="assets/music.m4a" type="audio/x-m4a">
+</audio>
+
 <div class="stage">
 
   <!-- Reusable gingham card frame. Scene content swaps inside .card-inner -->
@@ -196,6 +202,12 @@
           <!-- Memories heading -->
           <h2 class="memories-title">Memories</h2>
           
+          <!-- Heart button - moved to top -->
+          <button type="button" class="heart-button heart-button--memories-hor" id="btnBackToGifts2">
+            <span class="heart-shape">❤</span>
+            <span class="heart-text">Click Me</span>
+          </button>
+          
           <!-- Single horizontal clothesline with all photos -->
           <div class="horizontal-clothesline-wrapper">
             <div class="clothesline-horizontal"></div>
@@ -297,16 +309,10 @@
           <div class="scrapbook-decor decor-flower">🌸</div>
           <div class="scrapbook-decor decor-bow">🎀</div>
           <div class="scrapbook-decor decor-camera">📷</div>
-
-          <!-- Heart button -->
-          <button type="button" class="heart-button heart-button--memories-hor" id="btnBackToGifts2">
-            <span class="heart-shape">❤</span>
-            <span class="heart-text">Click Me</span>
-          </button>
         </div>
       </section>
 
-      <!-- SCENE 9: LETTER -->
+<!-- SCENE 9: LETTER -->
       <section class="scene scene-letter-fullscreen" id="scene-letter" data-scene="letter" aria-label="A letter for you">
         <div class="letter-fullscreen-container">
           <h2 class="letter-heading">To you, from me</h2>
@@ -327,7 +333,7 @@
             <!-- Last line with image on left side -->
             <div class="letter-closing-section">
               <figure class="letter-end-photo">
-                <img src="assets/seventh image.png" alt="Special memory">
+                <img src="assets/seventh%20image.jpeg" alt="Special memory">
               </figure>
               <p class="letter-paragraph letter-closing">Love you ❤️</p>
             </div>
@@ -348,6 +354,7 @@
           <span>you've been waiting for</span>
           <span>finally find you</span>
           <span>this year.</span>
+          <span class="signature-name">Ur Deepakshi Kandpal</span>
         </h2>
 
         <figure class="photo-frame photo-frame--rect photo-frame--right photo-frame--small">
@@ -366,6 +373,19 @@
   </div><!-- /card-frame -->
 
 </div><!-- /stage -->
+
+<!-- Fullscreen Photo Viewer -->
+<div class="fullscreen-viewer" id="fullscreenViewer">
+  <button type="button" class="fullscreen-close" id="fullscreenClose" aria-label="Close fullscreen">
+    <span class="close-icon">✕</span>
+  </button>
+  <div class="fullscreen-content">
+    <img id="fullscreenImage" src="" alt="Fullscreen view">
+    <video id="fullscreenVideo" controls style="display: none;">
+      <source src="" type="video/mp4">
+    </video>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>

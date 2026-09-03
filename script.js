@@ -74,8 +74,107 @@
     wireNavigation();
     setupLiveRegion();
     forceButtonsClickable();
+    setupFullscreenViewer();
+    setupBackgroundMusic();
     showScene("intro", { immediate: true });
   });
+
+  /* ---------------------------------------------------------
+     3a. BACKGROUND MUSIC - AGGRESSIVE AUTOPLAY
+     --------------------------------------------------------- */
+  function setupBackgroundMusic() {
+    var music = document.getElementById('backgroundMusic');
+    
+    // Start muted (browsers allow this), then unmute on interaction
+    music.muted = true;
+    music.volume = 0.6;
+    music.play();
+    
+    // Unmute on ANY interaction
+    var unmuted = false;
+    function unmuteMusic() {
+      if (!unmuted) {
+        music.muted = false;
+        music.volume = 0.6;
+        unmuted = true;
+        music.play();
+      }
+    }
+    
+    // Listen to EVERYTHING
+    document.body.addEventListener('click', unmuteMusic, { once: true });
+    document.body.addEventListener('touchstart', unmuteMusic, { once: true });
+    document.body.addEventListener('touchend', unmuteMusic, { once: true });
+    document.body.addEventListener('keydown', unmuteMusic, { once: true });
+    
+    // Try to unmute after 100ms
+    setTimeout(function() {
+      music.muted = false;
+      music.volume = 0.6;
+      music.play().catch(function() {
+        // If this fails, user must interact first
+        music.muted = true;
+      });
+    }, 100);
+  }
+
+  /* ---------------------------------------------------------
+     3b. FULLSCREEN PHOTO VIEWER
+     --------------------------------------------------------- */
+  function setupFullscreenViewer() {
+    var viewer = document.getElementById('fullscreenViewer');
+    var fullscreenImage = document.getElementById('fullscreenImage');
+    var fullscreenVideo = document.getElementById('fullscreenVideo');
+    var closeBtn = document.getElementById('fullscreenClose');
+    
+    // Add click handlers to all photos and videos in memories
+    document.querySelectorAll('.photo-clip img, .photo-clip video').forEach(function(media) {
+      media.addEventListener('click', function() {
+        var isVideo = media.tagName === 'VIDEO';
+        
+        if (isVideo) {
+          fullscreenImage.style.display = 'none';
+          fullscreenVideo.style.display = 'block';
+          fullscreenVideo.querySelector('source').src = media.querySelector('source').src;
+          fullscreenVideo.load();
+        } else {
+          fullscreenVideo.style.display = 'none';
+          fullscreenImage.style.display = 'block';
+          fullscreenImage.src = media.src;
+        }
+        
+        viewer.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+      });
+    });
+    
+    // Close viewer
+    function closeViewer() {
+      viewer.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scrolling
+      
+      // Pause video if playing
+      if (!fullscreenVideo.paused) {
+        fullscreenVideo.pause();
+      }
+    }
+    
+    closeBtn.addEventListener('click', closeViewer);
+    
+    // Close on background click
+    viewer.addEventListener('click', function(e) {
+      if (e.target === viewer) {
+        closeViewer();
+      }
+    });
+    
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && viewer.classList.contains('active')) {
+        closeViewer();
+      }
+    });
+  }
 
   /* Force all buttons to remain clickable - run after animations complete */
   function forceButtonsClickable() {
